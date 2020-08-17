@@ -1,0 +1,54 @@
+
+
+
+from people.models import Person
+Person.objects.create(name='A',age=1)
+Person.objects.get(name='A')
+
+
+def get_search_results(self,request,queryset,search_term):
+        queryset,use_distinct=super(PersonalAdmin,self).get_search_results(request,queryset,search_term)
+
+
+
+数据库新建对象方法
+1.  p=Person(name='mashiro',age=20)
+    p.save()
+2.  p=Person(name='mashiro')
+    p.age=20
+    p.save()
+3.  Person.objects.get_or_create(name='mashiro',age='20')
+获取对象
+1.  Person.objects.all()
+2.  Person.objects.all()[:10]   #不支持负索引
+3.  Person.objects.get(name=name)
+4.  Person.objects.filter(name='mashiro')   #等于
+5.  Person.objects.filter(name__exact='mashiro') #严格等于
+6.  Person.objects.filter(name__contains='mashiro') #名称中含有
+7.  Person.objects.filter(name__icontain='mashiro') #不区分大小写
+8.  Person.objects.filter(name__regex='^mashiro')   #正则表达式
+9.  Person.objects.filter(name__iregex='^mashiro')  #不区分大小写
+10. Person.objects.exclude(name__contains='mashiro')#排除包含对象
+11. Person.objects.filter(name__contains='mashiro').exclude(age=20)
+
+
+
+<form class="form" action="{% url 'modify_pwd' %}" method="post">
+                    {% csrf_token %}
+                    <ul>
+                        <li class="{% if modify_form.errors.password1 %}errorput{% endif %}">
+                            <span class="">新 密 码 ：</span>
+                            <input type="password" name="password1" id="pwd" placeholder="6-20位非中文字符">
+                            <i></i>
+                        </li>
+                        <input type="hidden" name="email" value="{{ email }}">
+                        <li class="{% if modify_form.errors.password2 %}errorput{% endif %}">
+                            <span class="">确定密码：</span>
+                            <input type="password" name="password2" id="repwd" placeholder="6-20位非中文字符">
+                            <i></i>
+                        </li>
+                        <div class="error btns" id="jsPasswdResetTips">
+                            {% for key,error in modify_form.errors.items %}{{ key }}:{{ error }}{% endfor %}{{ msg }}</div>
+                        <button type="submit" class="btn btn-primary btn-block">确认修改</button>
+                    </ul>
+                </form>

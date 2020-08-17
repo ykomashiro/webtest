@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Home</title>
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta-Tags -->
+	<!-- Stylesheets -->
+	<link href="{% static "login/css/style.css" %}" rel='stylesheet' type='text/css' />
+	<!--// Stylesheets -->
+	<!--online fonts-->
+	<link href="http://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<!--//online fonts-->
+</head>
+
+<body>
+	<h1>
+		 <strong>LOGIN</strong>
+
+		 <em>Management System</em>
+	</h1>
+	<div class="w3ls-login box">
+		<img src="{% static "login/images/logo1.png"%}" alt="logo_img" />
+		<!-- form starts here -->
+		<form action="{% url 'login' %}" method="post">
+			{% csrf_token %}
+			<div class="agile-field-txt">
+				<input type="email" name="username" placeholder="Username/Email" required=""/>
+			
+			</div>
+			<div class="agile-field-txt">
+				<input type="user" name="user" placeholder="gmkju" required=""/>
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			<div class="agile-field-txt">
+				<input type="password" name="password" placeholder="Password" required="" id="myInput" />
+
+				<div class="agile_label" style="color:#FF0000";>
+					{% for key,error in login_form.errors.items %} {{ error }} {% endfor %} {{ msg }}
+				</div>
+				<div class="agile_label">
+					<input id="check3" name="check3" type="checkbox" value="show password">
+					<label class="check" for="check3">Remember me</label>
+				</div>
+			</div>
+			
+			<div class="w3ls-bot">
+				<input type="submit" value="LOGIN">
+				<input type="hidden" name="next" value="{{ next }}" />
+			</div>
+		</form>
+	</div>
+	<!-- //form ends here -->
+	<!--copyright-->
+	<div class="copy-wthree">
+		<p>Copyright &copy; 2020 by <a target="_blank" href="http://www.mycodes.net/">ykomashiro@gmail</a></p>
+	</div>
+	<!--//copyright-->
+</body>
+
+</html>
